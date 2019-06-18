@@ -1,0 +1,96 @@
+<!--
+    
+     
+          '             .           .
+       o       '   o  .     '   . O
+    '   .   ' .   _____  '    .      .
+     .     .   .mMMMMMMMm.  '  o  '   .
+   '   .     .MMXXXXXXXXXMM.    .   ' 
+  .       . /XX77:::::::77XX\ .   .   .
+     o  .  ;X7:::''''''':::7X;   .  '
+    '    . |::'.: BONG    '::| .   .  .
+       .   ;:.:.            :;. o   .
+    '     . \'.:            /.    '   .
+       .     `.':.        .'.  '    .
+     '   . '  .`-._____.-'   .  . '  .
+      ' o   '  .   O   .   '  o    '
+       . ' .  ' . '  ' O   . '  '   '
+        . .   '    '  .  '   . '  '
+         . .'..' . ' ' . . '.  . '
+          `.':.'        ':'.'.'
+            `\\_  |     _//'
+              \(  |\    )/
+              //\ |_\  /\\
+             (/ /\(" )/\ \)
+              \/\ (  ) /\/
+                 |(  )|
+                 | \( \
+                 |  )  \
+                 |      \
+                 |       \
+                 |        `.__,
+                 \_________.-'Ojo/gnv
+    
+          http://bong.international/
+    
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+	<link rel="home" href="{{ siteUrl }}" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+    
+    <link rel="stylesheet" href="../style.css" type="text/css" />
+
+</head>
+
+    {% if craft.request.firstSegment != '' %}
+        <body class="lang_english single">
+    {% else %}
+        <body class="lang_english">
+    {% endif %}
+	<div id="container">
+	 
+	 
+		<header id="header" style="background-image: url('{% block headerImage %}{% endblock %}')">
+    
+            <div class="lang">
+              <a href="#english" class="js-lang-english">ENGLISH</a>
+              <a href="#tamil" class="js-lang-tamil">தமிழ்</a>
+              <a href="#sinhala" class="js-lang-sinhala">සිංහල</a>
+            </div>
+            
+            <a href="/"><img class="logo" src="/assets/logo.svg">
+            <img class="logo-compact" src="/assets/logo_compact.svg"></a>
+
+		</header>
+
+		<main id="content" role="main">
+			{% block content %}
+
+
+			{% endblock %}
+		</main>
+
+		<footer id="footer" style="{% block footer %}{% endblock %}">
+    <span>
+        
+    contact:
+ <!--   <i class="translated-text translated-text_english" style="display: inline">CONTACT:</i>-->
+	<!--<i class="translated-text translated-text_tamil"></i>-->
+	<!--<i class="translated-text translated-text_sinhala">ඇමතුම</i>-->
+        
+        <a href="mailto:itjpsl@gmail.com">itjpsl@gmail.com</a></span> <span>Design: <a href="http://templo.co.uk/" target="_blank">Templo</a></span>
+		</footer>
+	</div>
+	
+	
+	
+	<script type="text/javascript" src="../bundle.js"></script>
+
+	
+</body>
+</html>

@@ -1,0 +1,17 @@
+<ul>
+    
+    {% for file in files %}
+        
+    	{% set categoryIndex = file.category %}
+    	{% set category = categories.categories[ categoryIndex ] %}
+        
+        <li style="color: {{category.backgroundColor}}">
+            <a target="_blank" href="{% for asset in file.file %}{{asset.url}}{% endfor %}">
+                {% include 'translate.html' with { english: file.englishDate, tamil: entry.tamilDate, sinhala: entry.sinhalaDate, element: 'span', class: 'date' } %}
+                {% include 'translate.html' with { english: file.englishTitle, tamil: file.tamilTitle, sinhala: file.sinhalaTitle, element: 'span' } %}
+            </a>
+        </li>
+    
+    {% endfor %}
+    
+</ul>

@@ -1,0 +1,241 @@
+{% extends "_layout" %}
+
+{% block headerImage %}{% for asset in entry.headerImage %}{{ asset.url }}{% endfor %}{% endblock %}
+
+
+{% block content %}
+ 
+<div class="container">
+
+
+	<div class="reports">
+
+	
+  <div class="press desktop">
+    
+    <div>
+    			
+        <h3 class="translated-text translated-text_english">Press Releases</h3>
+        <h3 class="translated-text translated-text_tamil">செய்தி வெளியீடுகள்</h3>
+        <h3 class="translated-text translated-text_sinhala">මාධ්‍ය නිවේදන</h3>
+
+    </div>
+    
+    <div>
+    	
+		<h2 class="translated-text translated-text_english">IN ENGLISH</h2>
+		<h2 class="translated-text translated-text_tamil">ஆங்கிலத்தில்ல்</h2>
+		<h2 class="translated-text translated-text_sinhala">ඉංග්‍රීසියෙන්</h2>
+    	
+    	<ul>
+    	{% for block in entry.pressReleasesEnglish %}
+    	
+	    	{% set categoryIndex = block.category %}
+	    	{% set category = categories.categories[ categoryIndex ] %}
+	    	
+	    	<li style="color: {{category.backgroundColor}}">
+	            <a target="_blank" href="{% for asset in block.file %}{{asset.url}}{% endfor %}">
+	                {% include 'translate.html' with { english: block.englishDate, tamil: block.tamilDate, sinhala: block.sinhalaDate, element: 'span', class: 'date' } %}
+	                {% include 'translate.html' with { english: block.englishTitle, tamil: block.tamilTitle, sinhala: block.sinhalaTitle, element: 'span' } %}
+	            </a>
+	        </li>
+	        
+
+    	{% endfor %}
+    	</ul>
+    	
+
+    </div>
+    
+    <div>
+    	
+		<h2 class="translated-text translated-text_english">IN TAMIL</h2>
+		<h2 class="translated-text translated-text_tamil">தமிழில்</h2>
+		<h2 class="translated-text translated-text_sinhala">දෙමළෙන්</h2>
+
+    	<ul>
+    	{% for block in entry.pressReleasesTamil %}
+    	
+	    	{% set categoryIndex = block.category %}
+	    	{% set category = categories.categories[ categoryIndex ] %}
+	    	
+	    	<li style="color: {{category.backgroundColor}}">
+	            <a target="_blank" href="{% for asset in block.file %}{{asset.url}}{% endfor %}">
+	                {% include 'translate.html' with { english: block.englishDate, tamil: block.tamilDate, sinhala: block.sinhalaDate, element: 'span', class: 'date' } %}
+	                {% include 'translate.html' with { english: block.englishTitle, tamil: block.tamilTitle, sinhala: block.sinhalaTitle, element: 'span' } %}
+	            </a>
+	        </li>
+	        
+
+    	{% endfor %}
+    	</ul>
+    	
+    	
+
+
+
+    </div>
+    
+    <div>
+    	
+		<h2 class="translated-text translated-text_english">IN SINHALA</h2>
+		<h2 class="translated-text translated-text_tamil">சிங்களத்தில்்றி</h2>
+		<h2 class="translated-text translated-text_sinhala">සිංහලෙන්</h2>
+		
+    	<ul>
+    	{% for block in entry.pressReleasesSinhala %}
+    	
+	    	{% set categoryIndex = block.category %}
+	    	{% set category = categories.categories[ categoryIndex ] %}
+	    	
+	    	<li style="color: {{category.backgroundColor}}">
+	            <a target="_blank" href="{% for asset in block.file %}{{asset.url}}{% endfor %}">
+	                {% include 'translate.html' with { english: block.englishDate, tamil: block.tamilDate, sinhala: block.sinhalaDate, element: 'span', class: 'date' } %}
+	                {% include 'translate.html' with { english: block.englishTitle, tamil: block.tamilTitle, sinhala: block.sinhalaTitle, element: 'span' } %}
+	            </a>
+	        </li>
+	        
+
+    	{% endfor %}
+    	</ul>
+
+    </div>
+     
+  </div>
+	
+	
+	
+	
+	
+	
+  	{% set entries = craft.entries.section('reports').find() %}
+   
+   {% for entry in entries %}
+   
+   
+	{% set categoryIndex = entry.category %}
+	{% set category = categories.categories[ categoryIndex ] %}
+
+    <div class="item" style="color: {{category.textColor}}; background-color: {{category.backgroundColor}}">
+    
+      <a href="{{ entry.url }}" class="{{ category.englishTitle|replace(' ' , '')|lower }}">
+
+		{% include 'translate.html' with { english: category.englishTitle, tamil: category.tamilTitle, sinhala: category.sinhalaTitle, element: 'h3' } %}
+		
+		{% include 'translate.html' with { english: entry.englishTitle, tamil: entry.tamilTitle, sinhala: entry.sinhalaTitle, element: 'h2' } %}
+      	
+      </a>
+    </div>
+    
+   {% endfor %}
+   
+   
+   
+     <div class="press phone">
+    
+    <div>
+    	
+        <h3 class="translated-text translated-text_english">Press Releases</h3>
+        <h3 class="translated-text translated-text_tamil">செய்தி வெளியீடுகள்</h3>
+        <h3 class="translated-text translated-text_sinhala">මාධ්‍ය නිවේදන</h3>
+		
+
+    </div>
+    
+    <div>
+    	
+		<h2 class="translated-text translated-text_english">IN ENGLISH</h2>
+		<h2 class="translated-text translated-text_tamil">ஆங்கிலத்தில்ல்</h2>
+		<h2 class="translated-text translated-text_sinhala">ඉංග්‍රීසියෙන්</h2>
+
+    	<ul>
+    	{% for block in entry.pressReleasesEnglish %}
+    	
+	    	{% set categoryIndex = block.category %}
+	    	{% set category = categories.categories[ categoryIndex ] %}
+	    	
+	    	<li style="color: {{category.backgroundColor}}">
+	            <a target="_blank" href="{% for asset in block.file %}{{asset.url}}{% endfor %}">
+	                {% include 'translate.html' with { english: block.englishDate, tamil: block.tamilDate, sinhala: block.sinhalaDate, element: 'span', class: 'date' } %}
+	                {% include 'translate.html' with { english: block.englishTitle, tamil: block.tamilTitle, sinhala: block.sinhalaTitle, element: 'span' } %}
+	            </a>
+	        </li>
+	        
+
+    	{% endfor %}
+    	</ul>
+    	
+
+    </div>
+    
+    <div>
+    	
+		<h2 class="translated-text translated-text_english">IN TAMIL</h2>
+		<h2 class="translated-text translated-text_tamil">தமிழில்</h2>
+		<h2 class="translated-text translated-text_sinhala">දෙමළෙන්</h2>
+
+    	<ul>
+    	{% for block in entry.pressReleasesTamil %}
+    	
+	    	{% set categoryIndex = block.category %}
+	    	{% set category = categories.categories[ categoryIndex ] %}
+	    	
+	    	<li style="color: {{category.backgroundColor}}">
+	            <a target="_blank" href="{% for asset in block.file %}{{asset.url}}{% endfor %}">
+	                {% include 'translate.html' with { english: block.englishDate, tamil: block.tamilDate, sinhala: block.sinhalaDate, element: 'span', class: 'date' } %}
+	                {% include 'translate.html' with { english: block.englishTitle, tamil: block.tamilTitle, sinhala: block.sinhalaTitle, element: 'span' } %}
+	            </a>
+	        </li>
+	        
+
+    	{% endfor %}
+    	</ul>
+    	
+
+    </div>
+    
+    <div>
+    	
+		<h2 class="translated-text translated-text_english">IN SINHALA</h2>
+		<h2 class="translated-text translated-text_tamil">சிங்களத்தில்்றி</h2>
+		<h2 class="translated-text translated-text_sinhala">සිංහලෙන්</h2>
+
+    	<ul>
+    	{% for block in entry.pressReleasesSinhala %}
+    	
+	    	{% set categoryIndex = block.category %}
+	    	{% set category = categories.categories[ categoryIndex ] %}
+	    	
+	    	<li style="color: {{category.backgroundColor}}">
+	            <a target="_blank" href="{% for asset in block.file %}{{asset.url}}{% endfor %}">
+	                {% include 'translate.html' with { english: block.englishDate, tamil: block.tamilDate, sinhala: block.sinhalaDate, element: 'span', class: 'date' } %}
+	                {% include 'translate.html' with { english: block.englishTitle, tamil: block.tamilTitle, sinhala: block.sinhalaTitle, element: 'span' } %}
+	            </a>
+	        </li>
+	        
+
+    	{% endfor %}
+    	</ul>
+    	
+    </div>
+     
+  </div>
+  
+  
+  
+  </div>
+  
+</div>
+
+<div class="about">
+   
+	<h2 class="translated-text translated-text_english">ABOUT US</h2>
+	<h2 class="translated-text translated-text_tamil">எம்மைப் பற்றி</h2>
+	<h2 class="translated-text translated-text_sinhala">අප ගැන</h2>
+  
+  {% include 'translate.html' with { english: entry.aboutEnglish, tamil: entry.aboutTamil, sinhala: entry.aboutSinhala } %}
+
+</div>
+
+
+{% endblock %}

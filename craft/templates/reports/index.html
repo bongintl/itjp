@@ -1,0 +1,34 @@
+
+{% extends "_layout" %}
+
+
+{% block content %}
+	<h1>Reports</h1>
+
+	{% for entry in craft.entries.section('reports').find() %}
+		<article>
+		    
+<a href="{{ entry.url }}">  
+		    
+<h1>{{ entry.englishTitle }}</h1>
+<h1>{{ entry.tamilTitle }}</h1>
+<h1>{{ entry.sinhalaTitle }}</h1>
+
+</a>  
+
+
+<div class="">
+  {{ entry.englishBody }}
+</div>
+<div class="">
+  {{ entry.tamilBody }}
+</div>
+<div class="">
+  {{ entry.sinhalaBody }}
+</div>
+
+
+		
+		</article>
+	{% endfor %}
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "_layout" %}
+
+{% block headerImage %}{% for asset in entry.headerImage %}{{ asset.url }}{% endfor %}{% endblock %}
+
+	{% set categoryIndex = entry.category %}
+	{% set category = categories.categories[ categoryIndex ] %}
+	
+    {% set color = category.textColor %}
+    {% set bgColor = category.backgroundColor %}
+    
+{% block content %}
+        
+<div class="single">
+    
+
+
+
+
+	<article>
+		
+		<div class="content" style="color: {{ color }}; background-color: {{ bgColor }};">
+		
+    		{% include 'translate.html' with { english: category.englishTitle, tamil: category.tamilTitle, sinhala: category.sinhalaTitle, element: 'h3' } %}
+    
+        	{% include 'translate.html' with { english: entry.englishTitle, tamil: entry.tamilTitle, sinhala: entry.sinhalaTitle, element: 'h1' } %}
+    
+        	{% include 'translate.html' with { english: entry.englishBody, tamil: entry.tamilBody, sinhala: entry.sinhalaBody } %}
+
+        </div>
+
+        {% for block in entry.contentRows %}
+
+            {% if block.type == 'image' %}
+            
+                <div class="bg-image" style="background-image: url('{% for asset in block.image %}{{ asset.url }}{% endfor %}');"></div>
+
+            {% elseif block.type == 'twoImages' %}
+                
+                <div class="half-container">
+                {% for asset in block.twoImages %}
+                    <div class="bg-image half {% if loop.index != 1 %}last{% endif %}" style="background-image: url('{{ asset.url }}');"></div>
+                {% endfor %}
+                </div>
+
+            {% elseif block.type == 'video' %}
+                
+                <div class="video">
+                    {{ block.video|videoEmbed }}
+
+                </div>
+                
+                
+            {% endif %}
+            
+        {% endfor %}
+        
+
+
+
+	</article>
+
+        <div class="downloads" style="color: {{category.textColor}};">
+
+            <h1>DOWNLOADS</h1>
+            
+        	<!--<h1 class="translated-text translated-text_english">DOWNLOADS</h1>-->
+        	<!--<h1 class="translated-text translated-text_tamil"></h1>-->
+        	<!--<h1 class="translated-text translated-text_sinhala">බාගත කරන්න</h1>-->
+            
+            {% for file in entry.files %}
+                    <div class="item">
+                        <a target="_blank" href="{% for asset in file.file %}{{ asset.url }}{% endfor %}" style="background-color: {{ bgColor }}; border-color: {{ bgColor }}">
+                            
+                            <h3>{% include 'translate.html' with { english: file.englishFileType, tamil: file.tamilFileType, sinhala: file.sinhalaFileType, element: 'span' } %}
+                                {% include 'translate.html' with { english: file.englishDate, tamil: file.tamilDate, sinhala: file.sinhalaDate, element: 'span' } %}
+                            </h3>
+                            
+                        	{% include 'translate.html' with { english: file.englishTitle, tamil: file.tamilTitle, sinhala: file.sinhalaTitle, element: 'h2' } %}
+                            {% include 'dl-icon.html' with { color: color } %}
+                        </a>
+                    </div>
+                        
+            {% endfor %}
+        </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block footer %}border-color: {{ category.backgroundColor }}; color: {{ color }};{% endblock %}
